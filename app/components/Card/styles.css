@@ -1,0 +1,22 @@
+.card {
+  margin: 10px 0;
+  width: 250px;
+  padding: 20px;
+}
+
+.card a {
+  text-decoration: none;
+}
+
+.card img {
+  margin-bottom: 8px;
+  border-radius: 20%;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 3px;
+  margin: 0 auto;
+  display: block;
+}
