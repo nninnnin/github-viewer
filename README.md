@@ -31,6 +31,6 @@ npm start or yarn start
 - [ ] 승자 판별 방식은 `utils/api`를 참고하세요.
 - [ ] 사용자가 만약 Popular Repositories로 이동한다면, 사용자 정보는 모두 초기화 되어야 합니다.
 - [ ] 마지막으로 `Loading` 컴포넌트를 함수형 컴포넌트로 수정하세요.
-- [ ] 위 Todo가 모두 완료되었다면, Jest를 이용한 React 컴포넌트 단위 테스트(Unit Test)에 대해 조사해보시고 작성해보세요.
+- [ ] 위 Todo가 모두 완료되었다면, Jest를 이용한 React 컴포넌트 단위 테스트(Unit Test)에 대해 조사해보시고 작성해보세요. 가장 간단한 컴포넌트부터 작성해보시기 바랍니다.
   - [Testing React Apps](https://jestjs.io/docs/en/tutorial-react)
   - [What is TDD? (Vanilla Coding Wiki)](https://gitlab.com/vanilla-coding/bootcamp/wiki/blob/master/tdd/test.md)
