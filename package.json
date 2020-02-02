@@ -14,7 +14,9 @@
     ]
   },
   "jest": {
-    "setupFilesAfterEnv": ["./app/spec/setup.js"]
+    "setupFilesAfterEnv": [
+      "./app/spec/setup.js"
+    ]
   },
   "keywords": [],
   "author": "",
