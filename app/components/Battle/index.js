@@ -1,7 +1,5 @@
-import React from 'react'
+import React from "react";
 
-export default function Battle () {
-  return (
-    <div>This is Battle!</div>
-  )
+export default function Battle() {
+  return <div>This is Battle!</div>;
 }

@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { FaStar, FaCodeBranch, FaExclamationTriangle } from 'react-icons/fa';
-import Card from '../Card';
+import React from "react";
+import PropTypes from "prop-types";
+import { FaStar, FaCodeBranch, FaExclamationTriangle } from "react-icons/fa";
+import Card from "../Card";
 
-export default function ReposGrid ({ repos }) {
+export default function ReposGrid({ repos }) {
   return (
-    <ul className='grid space-around'>
+    <ul className="grid space-around">
       {repos.map((repo, index) => {
         const { owner, html_url, stargazers_count, forks, open_issues } = repo;
         const { login, avatar_url } = owner;
@@ -18,28 +18,28 @@ export default function ReposGrid ({ repos }) {
               href={html_url}
               name={login}
             >
-              <ul className='card-list'>
+              <ul className="card-list">
                 <li>
-                  <FaStar color='rgb(255, 215, 0)' size={22} />
+                  <FaStar color="rgb(255, 215, 0)" size={22} />
                   {stargazers_count.toLocaleString()} stars
                 </li>
                 <li>
-                  <FaCodeBranch color='rgb(129, 195, 245)' size={22} />
+                  <FaCodeBranch color="rgb(129, 195, 245)" size={22} />
                   {forks.toLocaleString()} forks
                 </li>
                 <li>
-                  <FaExclamationTriangle color='rgb(241, 138, 147)' size={22} />
+                  <FaExclamationTriangle color="rgb(241, 138, 147)" size={22} />
                   {open_issues.toLocaleString()} open
                 </li>
               </ul>
             </Card>
           </li>
-        )
+        );
       })}
     </ul>
   );
 }
 
 ReposGrid.propTypes = {
-  repos: PropTypes.array.isRequired
+  repos: PropTypes.array.isRequired,
 };
