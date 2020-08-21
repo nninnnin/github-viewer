@@ -11,8 +11,8 @@
   7. Enter your Client ID and Secret ID below
 
  */
-const GITHUB_CLIENT_ID = "5f631ed2141092ce51d9";
-const GITHUB_SECRET_ID = "ed4fe6b034a18fc5e7c01401400b4b76ec0cc05e";
+const GITHUB_CLIENT_ID = "GITHUB_CLIENT_ID";
+const GITHUB_SECRET_ID = "GITHUB_SECRET_ID";
 
 /*
 
@@ -30,30 +30,40 @@ function getErrorMsg(message, username) {
   return message;
 }
 
-function getProfile(username) {
-  return fetch(`https://api.github.com/users/${username}${defaultParams}`)
-    .then((res) => res.json())
-    .then((profile) => {
-      if (profile.message) {
-        throw new Error(getErrorMsg(profile.message, username));
-      }
+async function getProfile(username) {
+  try {
+    const res = await fetch(
+      `https://api.github.com/users/${username}${defaultParams}`
+    );
 
-      return profile;
-    });
+    const profile = await res.json();
+
+    if (profile.message) {
+      throw new Error(getErrorMsg(profile.message, username));
+    }
+
+    return profile;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-function getRepos(username) {
-  return fetch(
-    `https://api.github.com/users/${username}/repos${defaultParams}&per_page=100`
-  )
-    .then((res) => res.json())
-    .then((repos) => {
-      if (repos.message) {
-        throw new Error(getErrorMsg(repos.message, username));
-      }
+async function getRepos(username) {
+  try {
+    const res = await fetch(
+      `https://api.github.com/users/${username}/repos${defaultParams}&per_page=100`
+    );
 
-      return repos;
-    });
+    const repos = await res.json();
+
+    if (repos.message) {
+      throw new Error(getErrorMsg(repos.message, username));
+    }
+
+    return repos;
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function getStarCount(repos) {
@@ -67,13 +77,18 @@ function calculateScore(followers, repos) {
   return followers * 3 + getStarCount(repos);
 }
 
-function getUserData(player) {
-  return Promise.all([getProfile(player), getRepos(player)]).then(
-    ([profile, repos]) => ({
+async function getUserData(player) {
+  try {
+    const profile = await getProfile(player);
+    const repos = await getRepos(player);
+
+    return {
       profile,
       score: calculateScore(profile.followers, repos),
-    })
-  );
+    };
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function sortPlayers(players) {
@@ -86,25 +101,28 @@ function sortPlayers(players) {
   WARNING: DO NOT MODIFY
 
  */
-export function battle([player1, player2]) {
-  return Promise.all([
-    getUserData(player1),
-    getUserData(player2),
-  ]).then((results) => sortPlayers(results));
+export async function battle([player1, player2]) {
+  try {
+    const playerOne = await getUserData(player1);
+    const playerTwo = await getUserData(player2);
+
+    return sortPlayers([playerOne, playerTwo]);
+  } catch (err) {
+    console.error(err);
+  }
 }
 
-export function fetchPopularRepos(language) {
+export async function fetchPopularRepos(language) {
   const endpoint = window.encodeURI(
-    `https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories${defaultParams}`
+    `https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`
   );
 
-  return fetch(endpoint)
-    .then((res) => res.json())
-    .then((data) => {
-      if (!data.items) {
-        throw new Error(data.message);
-      }
+  try {
+    const res = await fetch(endpoint);
+    const { items } = await res.json();
 
-      return data.items;
-    });
+    return items;
+  } catch (err) {
+    console.error(err);
+  }
 }

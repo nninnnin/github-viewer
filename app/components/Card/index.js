@@ -11,11 +11,11 @@ export default function Card({
   children,
 }) {
   return (
-    <div className="card bg-light">
-      <h4 className="header-lg center-text">{header}</h4>
+    <div className="card">
       <img className="avatar" src={avatar} alt={`Avatar for ${name}`} />
       {subheader && <h4 className="center-text">{subheader}</h4>}
-      <h2 className="center-text">
+      <h2 className="header-sm center-text">
+        {header}{" "}
         <a className="link" href={href}>
           {name}
         </a>

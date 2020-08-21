@@ -15,11 +15,13 @@ export default function App() {
     <div className="container">
       <div className="grid space-between">
         <NavButton
-          text={"Popular Repositories"}
+          isActive={!showBattle}
+          text={"인기있는 저장소"}
           onClick={() => toggleView(false)}
         />
         <NavButton
-          text={"Github User Battle"}
+          isActive={showBattle}
+          text={"Github 배틀"}
           onClick={() => toggleView(true)}
         />
       </div>

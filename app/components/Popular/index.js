@@ -6,7 +6,8 @@ import ReposGrid from "../ReposGrid";
 import LANGUAGES from "../../constants/languages";
 
 export default function Popular() {
-  const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGES[0]);
+  const DEFAULT_LANGUAGE = LANGUAGES[0];
+  const [selectedLanguage, setSelectedLanguage] = useState(DEFAULT_LANGUAGE.en);
   const [repos, setRepos] = useState({});
   const [error, setError] = useState(null);
 
@@ -26,10 +27,10 @@ export default function Popular() {
         });
       })
       .catch(() => {
-        console.warn("Error fetching repos: ", error);
+        console.warn("요청 오류: ", error);
 
         setError({
-          error: "There was an error fetching the repositories.",
+          error: "저장소 정보를 가져오는데 실패하였습니다.",
         });
       });
   }

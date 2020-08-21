@@ -1,0 +1,20 @@
+.nav-button {
+  color: #414141;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 300;
+  cursor: pointer;
+  background-color: #2574d0;
+  color: #eeeeee;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid #2574d0;
+  transition: 0.3s all ease;
+}
+
+.nav-button:hover,
+.nav-button.active {
+  font-weight: 500;
+  color: #2574d0;
+  background-color: #ffffff;
+}

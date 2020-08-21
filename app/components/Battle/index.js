@@ -1,5 +1,5 @@
 import React from "react";
 
 export default function Battle() {
-  return <div>This is Battle!</div>;
+  return <h1 className="center-text">This is Battle!</h1>;
 }

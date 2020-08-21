@@ -1,9 +1,10 @@
 import React from "react";
+import "./styles.css";
 
-export default function NavButton({ text, onClick }) {
+export default function NavButton({ text, isActive, onClick }) {
   return (
     <a
-      className="link"
+      className={`nav-button ${isActive ? "active" : ""}`}
       onClick={(ev) => {
         ev.preventDefault();
         onClick();

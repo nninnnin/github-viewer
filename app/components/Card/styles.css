@@ -1,22 +1,20 @@
 .card {
-  margin: 10px 0;
+  margin-bottom: 10px;
   width: 250px;
   padding: 20px;
+  border: 1px solid #f2f2f2;
+  border-radius: 2px;
 }
 
-.card a {
-  text-decoration: none;
-}
-
-.card img {
-  margin-bottom: 8px;
-  border-radius: 20%;
+.link {
+  text-decoration: underline;
+  font-weight: 300;
 }
 
 .avatar {
-  width: 150px;
-  height: 150px;
+  width: 120px;
+  height: 120px;
   border-radius: 3px;
-  margin: 0 auto;
+  margin: 30px auto 50px;
   display: block;
 }
