@@ -14,7 +14,7 @@ npm start
 
 ## Caution
 
-Github API 요청이 많아지면 제한될 수 있습니다.
+🚨 Github API 요청이 많아지면 제한될 수 있습니다.
 
 ## TODO
 
