@@ -1,11 +1,12 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { fetchPopularRepos } from "../../utils/api";
 import Loading from "../Loading";
 import LanguagesNavigation from "../LanguagesNavigation";
 import ReposGrid from "../ReposGrid";
+import LANGUAGES from "../../constants/languages";
 
 export default function Popular() {
-  const [selectedLanguage, setSelectedLanguages] = useState("ALL");
+  const [selectedLanguage, setSelectedLanguage] = useState(LANGUAGES[0]);
   const [repos, setRepos] = useState({});
   const [error, setError] = useState(null);
 
@@ -14,25 +15,23 @@ export default function Popular() {
   }, []);
 
   function updateLanguage(selectedLanguage) {
-    setSelectedLanguages(selectedLanguage);
+    setSelectedLanguage(selectedLanguage);
     setError(null);
 
-    if (!repos[selectedLanguage]) {
-      fetchPopularRepos(selectedLanguage)
-        .then((data) => {
-          setRepos({
-            ...repos,
-            [selectedLanguage]: data,
-          });
-        })
-        .catch(() => {
-          console.warn("Error fetching repos: ", error);
-
-          setError({
-            error: "There was an error fetching the repositories.",
-          });
+    fetchPopularRepos(selectedLanguage)
+      .then((data) => {
+        setRepos({
+          ...repos,
+          [selectedLanguage]: data,
         });
-    }
+      })
+      .catch(() => {
+        console.warn("Error fetching repos: ", error);
+
+        setError({
+          error: "There was an error fetching the repositories.",
+        });
+      });
   }
 
   function isLoading() {
@@ -40,17 +39,17 @@ export default function Popular() {
   }
 
   return (
-    <Fragment>
+    <>
       <LanguagesNavigation
         selected={selectedLanguage}
         onUpdateLanguage={updateLanguage}
       />
 
-      {isLoading() && <Loading text="Fetching" />}
+      {isLoading() && <Loading text="가져오는 중입니다" />}
 
       {error && <p className="center-text error">{error}</p>}
 
       {repos[selectedLanguage] && <ReposGrid repos={repos[selectedLanguage]} />}
-    </Fragment>
+    </>
   );
 }

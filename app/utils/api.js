@@ -3,16 +3,16 @@
   TODO: Enter your own Github client id and secret id below
 
   1. Visit Github.com
-  2. User Settings
-  3. Developer Settings
-  4. Oauth Apps
-  5. New Oauth App
-  6. Enter 'http://localhost:8080' for homepage, callback URL
+  2. Visit User Settings (https://github.com/settings/profile)
+  3. Select "Developer Settings"
+  4. Select "Oauth Apps"
+  5. Select "New Oauth App"
+  6. Enter "http://localhost:8080" for homepage & callback URL
   7. Enter your Client ID and Secret ID below
 
  */
-const GITHUB_CLIENT_ID = "YOUR_GITHUB_CLIENT_ID";
-const GITHUB_SECRET_ID = "YOUR_GITHUB_SECRET_ID";
+const GITHUB_CLIENT_ID = "5f631ed2141092ce51d9";
+const GITHUB_SECRET_ID = "ed4fe6b034a18fc5e7c01401400b4b76ec0cc05e";
 
 /*
 
@@ -95,7 +95,7 @@ export function battle([player1, player2]) {
 
 export function fetchPopularRepos(language) {
   const endpoint = window.encodeURI(
-    `https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`
+    `https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories${defaultParams}`
   );
 
   return fetch(endpoint)

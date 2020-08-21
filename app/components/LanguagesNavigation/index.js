@@ -1,9 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
+import LANGUAGES from "../../constants/languages";
 
 export default function LangaugesNav({ selected, onUpdateLanguage }) {
-  const LANGUAGES = ["All", "JavaScript", "Ruby", "Java", "CSS", "Python"];
-
   return (
     <ul className="flex-center">
       {LANGUAGES.map((language) => (

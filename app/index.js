@@ -1,31 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
-import Popular from "./components/Popular";
-import Battle from "./components/Battle";
-import "./index.css";
-
-function App() {
-  const [showBattle, setShowBattle] = useState(false);
-
-  function toggleView(showBattle, ev) {
-    ev.preventDefault();
-    setShowBattle(showBattle);
-  }
-
-  return (
-    <div className="container">
-      <div className="grid space-between">
-        <a className="link" onClick={() => toggleView(false)}>
-          Popular Repositories
-        </a>
-        <a className="link" onClick={() => toggleView(true)}>
-          Github User Battle
-        </a>
-      </div>
-      {!showBattle && <Popular />}
-      {showBattle && <Battle />}
-    </div>
-  );
-}
+import App from "./components/App";
 
 ReactDOM.render(<App />, document.getElementById("app"));
