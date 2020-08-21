@@ -38,6 +38,6 @@ Github API 요청이 많아지면 제한될 수 있습니다.
 - [ ] 클래스 기반 컴포넌트로 작업되어 있는 `<Loading />` 컴포넌트를 함수형 컴포넌트로 수정하세요.
 - [ ] `<Loading />` 컴포넌트에 대한 Unit Test를 보강하세요. (`/spec/Loading.spec.js`)
   - [Testing React Apps](https://jestjs.io/docs/en/tutorial-react)
-  - [What is TDD? (Vanilla Coding Wiki)](https://gitlab.com/vanilla-coding/bootcamp/wiki/blob/master/tdd/test.md)
+  - [What is TDD? (Vanilla Coding Wiki)](/docs/test.md)
 - [ ] 사용자가 Popular -> Battle -> Popular로 이동했을 경우, (존재한다면) 이전에 가져온 데이터를 이용해 렌더링할 수 있도록 최적화 시켜주세요.
 - [ ] 사용자가 Polular 페이지에서 데이터가 처리되기 전에 Battle 페이지로 이동한다면, 현재 오류가 발생하고 있습니다. 콘솔의 오류 메시지를 확인하고 수정해주시기 바랍니다.
