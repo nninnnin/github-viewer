@@ -1,5 +1,7 @@
 # Github Viewer
 
+![Github](github.png)
+
 Github의 인기 저장소 목록을 확인할 수 있고, Github 사용자 간의 프로필을 대결 구도로 비교해 볼 수 있는 웹 어플리케이션입니다.
 
 ## Installation
