@@ -36,10 +36,10 @@ npm start
   - Followers Count
   - Following Count
   - Repository Count
-- [ ] 사용자가 만약 Popular Repositories로 이동한다면, 사용자 정보는 모두 초기화 되어야 합니다.
+- [ ] Popular -> Battle & Battle 진행 -> Popular -> Battle 순으로 진행한다면, 바로 이전에 진행한 배틀 결과 정보가 보여져야 합니다.
 - [ ] 클래스 기반 컴포넌트로 작업되어 있는 `<Loading />` 컴포넌트를 함수형 컴포넌트로 수정하세요.
 - [ ] `<Loading />` 컴포넌트에 대한 Unit Test를 보강하세요. (`/spec/Loading.spec.js`)
   - [Testing React Apps](https://jestjs.io/docs/en/tutorial-react)
   - [What is TDD?](docs/tdd.md)
 - [ ] 사용자가 Popular -> Battle -> Popular로 이동했을 경우, (존재한다면) 이전에 가져온 데이터를 이용해 렌더링할 수 있도록 최적화 시켜주세요.
-- [ ] 사용자가 Polular 페이지에서 데이터가 처리되기 전에 Battle 페이지로 이동한다면, 현재 오류가 발생하고 있습니다. 콘솔의 오류 메시지를 확인하고 수정해주시기 바랍니다.
+- [ ] 사용자가 Polular 페이지에서 데이터가 처리되기 전에 빠른 속도로 Battle 페이지로 이동한다면, 현재 오류가 발생하고 있습니다. 콘솔의 오류 메시지를 확인하고 수정해주시기 바랍니다.
