@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 const styles = {
@@ -17,7 +17,7 @@ const styles = {
   TODO: 아래 Loading 컴포넌트를 함수형 컴포넌트로 수정하고, `/spec/Loading.spec.js`에 테스트 내용을 보강하세요.
 
  */
-export default class Loading extends React.Component {
+class Loading extends React.Component {
   constructor(props) {
     super(props);
 
@@ -45,16 +45,22 @@ export default class Loading extends React.Component {
   }
 }
 
-function Loading2 ({ speed, text }) {
-  const [content, setContent] = useState('');
+export default function Loading2 ({ speed, text }) {
+  const [content, setContent] = useState(text);
 
   useEffect(() => {
-
+    const interval = window.setInterval(() => {
+      if (content === text + '...') {
+        setContent(text);
+      } else {
+        setContent(content + '.');
+      }
+    }, speed);
 
     return function () {
-      window.clearInterval(this.interval);
+      window.clearInterval(interval);
     }
-  }, []); // 원하는 것은 마운트 될 때에만 한번 실행
+  });
 
   return (
     <p style={styles.content}>{content}</p>
@@ -67,6 +73,11 @@ Loading.propTypes = {
 };
 
 Loading.defaultProps = {
+  text: "Loading",
+  speed: 300,
+};
+
+Loading2.defaultProps = {
   text: "Loading",
   speed: 300,
 };

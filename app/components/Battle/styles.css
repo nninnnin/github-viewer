@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
 }
+
 .battle-repo {
     display: flex;
     flex-direction: column;
@@ -14,6 +15,13 @@
 }
 .battle-repo > span > input {
     flex: 1;
+}
+.prize {
+    width: 1em;
+}
+.score {
+    display: block !important;
+    text-align: center;
 }
 
 .battle-button {
