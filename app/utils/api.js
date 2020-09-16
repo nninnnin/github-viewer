@@ -102,6 +102,7 @@ function sortPlayers(players) {
 
  */
 export async function battle([player1, player2]) {
+  console.log(player1, player2); // 여기서도 이미 n n 이네..
   try {
     const playerOne = await getUserData(player1);
     const playerTwo = await getUserData(player2);

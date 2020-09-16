@@ -1,25 +1,26 @@
-.battleReposContainer {
+.battle-repos-container {
     display: flex;
     justify-content: center;
 }
-.battleRepo {
+.battle-repo {
     display: flex;
     flex-direction: column;
     justify-content: center;
 
     margin-left: 15px;
 }
-.battleRepo > span {
+.battle-repo > span {
     display: flex;
 }
-.battleRepo > span > input {
+.battle-repo > span > input {
     flex: 1;
 }
 
-.battleButton {
+.battle-button {
     position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translate(-50%);
+    transform: translate(-45%);
 
     padding: 10px 20px;
 }

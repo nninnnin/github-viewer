@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 const styles = {
@@ -26,7 +26,7 @@ export default class Loading extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount() { // 컴포넌트가 마운트되었을 때
     const { speed, text } = this.props;
 
     this.interval = window.setInterval(() => {
@@ -43,6 +43,22 @@ export default class Loading extends React.Component {
   render() {
     return <p style={styles.content}>{this.state.content}</p>;
   }
+}
+
+function Loading2 ({ speed, text }) {
+  const [content, setContent] = useState('');
+
+  useEffect(() => {
+
+
+    return function () {
+      window.clearInterval(this.interval);
+    }
+  }, []); // 원하는 것은 마운트 될 때에만 한번 실행
+
+  return (
+    <p style={styles.content}>{content}</p>
+  );
 }
 
 Loading.propTypes = {
