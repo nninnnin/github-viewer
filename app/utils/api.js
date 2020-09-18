@@ -31,39 +31,31 @@ function getErrorMsg(message, username) {
 }
 
 async function getProfile(username) {
-  try {
-    const res = await fetch(
-      `https://api.github.com/users/${username}${defaultParams}`
-    );
+  const res = await fetch(
+    `https://api.github.com/users/${username}${defaultParams}`
+  );
 
-    const profile = await res.json();
+  const profile = await res.json();
 
-    if (profile.message) {
-      throw new Error(getErrorMsg(profile.message, username));
-    }
-
-    return profile;
-  } catch (err) {
-    console.error(err);
+  if (profile.message) {
+    throw new Error(getErrorMsg(profile.message, username));
   }
+
+  return profile;
 }
 
 async function getRepos(username) {
-  try {
-    const res = await fetch(
-      `https://api.github.com/users/${username}/repos${defaultParams}&per_page=100`
-    );
+  const res = await fetch(
+    `https://api.github.com/users/${username}/repos${defaultParams}&per_page=100`
+  );
 
-    const repos = await res.json();
+  const repos = await res.json();
 
-    if (repos.message) {
-      throw new Error(getErrorMsg(repos.message, username));
-    }
-
-    return repos;
-  } catch (err) {
-    console.error(err);
+  if (repos.message) {
+    throw new Error(getErrorMsg(repos.message, username));
   }
+
+  return repos;
 }
 
 function getStarCount(repos) {
@@ -78,17 +70,13 @@ function calculateScore(followers, repos) {
 }
 
 async function getUserData(player) {
-  try {
-    const profile = await getProfile(player);
-    const repos = await getRepos(player);
+  const profile = await getProfile(player);
+  const repos = await getRepos(player);
 
-    return {
-      profile,
-      score: calculateScore(profile.followers, repos),
-    };
-  } catch (err) {
-    console.error(err);
-  }
+  return {
+    profile,
+    score: calculateScore(profile.followers, repos),
+  };
 }
 
 function sortPlayers(players) {
@@ -102,28 +90,19 @@ function sortPlayers(players) {
 
  */
 export async function battle([player1, player2]) {
-  console.log(player1, player2); // 여기서도 이미 n n 이네..
-  try {
-    const playerOne = await getUserData(player1);
-    const playerTwo = await getUserData(player2);
+  const playerOne = getUserData(player1);
+  const playerTwo = getUserData(player2);
 
-    return sortPlayers([playerOne, playerTwo]);
-  } catch (err) {
-    console.error(err);
-  }
+  return sortPlayers([await playerOne, await playerTwo]);
 }
 
 export async function fetchPopularRepos(language) {
   const endpoint = window.encodeURI(
-    `https://api.github.com/search/repositories?q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`
+    `https://api.github.com/search/repositories${defaultParams}&q=stars:>1+language:${language}&sort=stars&order=desc&type=Repositories`
   );
 
-  try {
-    const res = await fetch(endpoint);
-    const { items } = await res.json();
+  const res = await fetch(endpoint);
+  const { items } = await res.json();
 
-    return items;
-  } catch (err) {
-    console.error(err);
-  }
+  return items;
 }

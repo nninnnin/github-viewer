@@ -26,7 +26,7 @@ class Loading extends React.Component {
     };
   }
 
-  componentDidMount() { // 컴포넌트가 마운트되었을 때
+  componentDidMount() {
     const { speed, text } = this.props;
 
     this.interval = window.setInterval(() => {
@@ -75,6 +75,11 @@ Loading.propTypes = {
 Loading.defaultProps = {
   text: "Loading",
   speed: 300,
+};
+
+Loading2.propTypes = {
+  text: PropTypes.string.isRequired,
+  speed: PropTypes.number.isRequired,
 };
 
 Loading2.defaultProps = {

@@ -4,47 +4,57 @@ import { battle } from '../../utils/api.js';
 import Card from '../Card';
 import Loading from '../Loading'
 
-export default function Battle() {
+export default function Battle({ storeResult, latestBattle }) {
   const [leftRepoName, setLeftRepoName] = useState('');
   const [rightRepoName, setRightRepoName] = useState('');
-  const [leftRepo, setLeftRepo] = useState(0);
-  const [rightRepo, setRightRepo] = useState(0);
+  const [leftRepo, setLeftRepo] = useState(latestBattle.leftRepo);
+  const [rightRepo, setRightRepo] = useState(latestBattle.rightRepo);
   const [isBattleReady, setIsBattleReady] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isLeftWinner, setIsLeftWinner] = useState(false);
+  const [isBattleOver, setIsBattleOver] = useState(false);
 
-  console.log('useEffect');
+  const reposReady = leftRepo.profile && rightRepo.profile;
 
-  useEffect(() => { // useEffect는 render sequence의 끄트머리에 실행된다
+  useEffect(() => {
     if (!leftRepoName) return;
 
-    // 로딩 컴포넌트 보이기
     setIsLoading(true);
 
     (async function () {
-      const result = await battle([leftRepoName, rightRepoName]);
-      const winner = result[0];
-      const loser = result[1];
+      try {
+        const result = await battle([ leftRepoName, rightRepoName ]);
+        const winner = result[0];
+        const loser = result[1];
 
-      console.log(winner, loser);
+        if (winner.profile.login === leftRepoName) {
+          setIsLeftWinner(true);
+          setLeftRepo(winner);
+          setRightRepo(loser);
+        } else {
+          setIsLeftWinner(false);
+          setLeftRepo(loser);
+          setRightRepo(winner);
+        }
 
-      if (winner.profile.login === leftRepoName) {
-        setIsLeftWinner(true);
-
-        setLeftRepo(winner);
-        setRightRepo(loser);
-      } else {
-        setIsLeftWinner(false);
-
-        setLeftRepo(loser);
-        setRightRepo(winner);
+        setIsBattleOver(true);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(`Error occured during battle sequence ${err}`);
       }
-
-      // 로딩 컴포넌트 숨기기
-      setIsLoading(false);
     })();
 
   }, [isBattleReady]);
+
+  useEffect(() => {
+    if (reposReady) {
+      storeResult({
+        leftRepo,
+        rightRepo,
+        isLeftWinner
+      });
+    }
+  }, [isBattleOver]);
 
   function hasNames() {
     return leftRepoName && rightRepoName;
@@ -57,8 +67,6 @@ export default function Battle() {
   const winnerStyle = {
     border : '3px solid orangered'
   };
-
-  const reposReady = leftRepo.profile && rightRepo.profile;
 
   return (
     <>

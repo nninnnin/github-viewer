@@ -15,7 +15,7 @@ export default function LangaugesNav({ selected, onUpdateLanguage }) {
             <button
               className="btn-clear"
               style={en === selected ? { color: "#2574D0" } : null}
-              onClick={() => onUpdateLanguage(en)}
+              onClick={() => onUpdateLanguage(en, {isCurrent: true})}
             >
               {ko}
             </button>

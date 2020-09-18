@@ -6,6 +6,11 @@ import "./styles.css";
 
 export default function App() {
   const [showBattle, setShowBattle] = useState(false);
+  const [repos, setRepos] = useState({});
+  const [latestBattleResult, setLatestBattleResult] = useState({
+    leftRepo: {},
+    rightRepo: {}
+  });
 
   function toggleView(showBattle) {
     setShowBattle(showBattle);
@@ -25,8 +30,8 @@ export default function App() {
           onClick={() => toggleView(true)}
         />
       </div>
-      {!showBattle && <Popular />}
-      {showBattle && <Battle />}
+      {!showBattle && <Popular repos={repos} updateRepos={(repo) => setRepos(repo)} />}
+      {showBattle && <Battle storeResult={setLatestBattleResult} latestBattle={latestBattleResult} />}
     </div>
   );
 }
