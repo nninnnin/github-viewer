@@ -46,7 +46,6 @@ test('Tests for setInterval callback using advanceTimer', () => {
     jest.advanceTimersByTime(1600);
   });
 
-  console.log(wrapper.text());
   expect(wrapper.text()).toEqual(initialText + '...');
 });
 

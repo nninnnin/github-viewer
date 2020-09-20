@@ -57,7 +57,7 @@ export default function Loading2 ({ speed, text }) {
       }
     }, speed);
 
-    return function () {
+    return () => {
       window.clearInterval(interval);
     }
   });
@@ -78,8 +78,8 @@ Loading.defaultProps = {
 };
 
 Loading2.propTypes = {
-  text: PropTypes.string.isRequired,
-  speed: PropTypes.number.isRequired,
+  text: PropTypes.string,
+  speed: PropTypes.number,
 };
 
 Loading2.defaultProps = {

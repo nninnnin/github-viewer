@@ -18,8 +18,7 @@ export default function Popular({ repos, updateRepos }) {
     updateLanguage(selectedLanguage, checker);
 
     return () => {
-      console.log('unmounted!');
-      checker.isCurrent = false
+      checker.isCurrent = false;
     };
   }, []);
 
@@ -28,8 +27,7 @@ export default function Popular({ repos, updateRepos }) {
     setError(null);
 
     fetchPopularRepos(selectedLanguage)
-      .then(function (data) {
-        console.log(checker);
+      .then((data) => {
         if (!checker.isCurrent) return;
 
         updateRepos({
