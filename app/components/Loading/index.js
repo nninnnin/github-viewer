@@ -12,40 +12,7 @@ const styles = {
   },
 };
 
-/*
-
-  TODO: 아래 Loading 컴포넌트를 함수형 컴포넌트로 수정하고, `/spec/Loading.spec.js`에 테스트 내용을 보강하세요.
-
- */
-class Loading extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      content: props.text,
-    };
-  }
-
-  componentDidMount() {
-    const { speed, text } = this.props;
-
-    this.interval = window.setInterval(() => {
-      this.state.content === text + "..."
-        ? this.setState({ content: text })
-        : this.setState(({ content }) => ({ content: content + "." }));
-    }, speed);
-  }
-
-  componentWillUnmount() {
-    window.clearInterval(this.interval);
-  }
-
-  render() {
-    return <p style={styles.content}>{this.state.content}</p>;
-  }
-}
-
-export default function Loading2 ({ speed, text }) {
+export default function Loading ({ speed, text }) {
   const [content, setContent] = useState(text);
 
   useEffect(() => {
@@ -68,21 +35,11 @@ export default function Loading2 ({ speed, text }) {
 }
 
 Loading.propTypes = {
-  text: PropTypes.string.isRequired,
-  speed: PropTypes.number.isRequired,
-};
-
-Loading.defaultProps = {
-  text: "Loading",
-  speed: 300,
-};
-
-Loading2.propTypes = {
   text: PropTypes.string,
   speed: PropTypes.number,
 };
 
-Loading2.defaultProps = {
+Loading.defaultProps = {
   text: "Loading",
   speed: 300,
 };
