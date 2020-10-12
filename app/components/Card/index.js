@@ -26,9 +26,12 @@ export default function Card({
 }
 
 Card.propTypes = {
-  header: PropTypes.string.isRequired,
+  header: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.object.isRequired
+  ]),
   subheader: PropTypes.string,
   avatar: PropTypes.string.isRequired,
-  href: PropTypes.string.isRequired,
+  href: PropTypes.string,
   name: PropTypes.string.isRequired,
 };

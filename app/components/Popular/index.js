@@ -5,23 +5,32 @@ import LanguagesNavigation from "../LanguagesNavigation";
 import ReposGrid from "../ReposGrid";
 import LANGUAGES from "../../constants/languages";
 
-export default function Popular() {
+export default function Popular({ repos, updateRepos }) {
   const DEFAULT_LANGUAGE = LANGUAGES[0];
   const [selectedLanguage, setSelectedLanguage] = useState(DEFAULT_LANGUAGE.en);
-  const [repos, setRepos] = useState({});
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    updateLanguage(selectedLanguage);
+    const checker = {
+      isCurrent: true
+    };
+
+    updateLanguage(selectedLanguage, checker);
+
+    return () => {
+      checker.isCurrent = false;
+    };
   }, []);
 
-  function updateLanguage(selectedLanguage) {
+  function updateLanguage(selectedLanguage, checker) {
     setSelectedLanguage(selectedLanguage);
     setError(null);
 
     fetchPopularRepos(selectedLanguage)
       .then((data) => {
-        setRepos({
+        if (!checker.isCurrent) return;
+
+        updateRepos({
           ...repos,
           [selectedLanguage]: data,
         });
@@ -48,7 +57,7 @@ export default function Popular() {
 
       {isLoading() && <Loading text="가져오는 중입니다" />}
 
-      {error && <p className="center-text error">{error}</p>}
+      {error && <p className="center-text error">에러났숑: {error.message}</p>}
 
       {repos[selectedLanguage] && <ReposGrid repos={repos[selectedLanguage]} />}
     </>

@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Loading component should show text prop 1`] = `
+<p
+  style={
+    Object {
+      "fontSize": "35px",
+      "left": "0",
+      "marginTop": "20px",
+      "position": "absolute",
+      "right": "0",
+      "textAlign": "center",
+    }
+  }
+>
+  Shallow
+</p>
+`;
+
+exports[`Snapshot test 1`] = `
+<Loading2
+  speed={300}
+  text="hello world"
+>
+  <p
+    style={
+      Object {
+        "fontSize": "35px",
+        "left": "0",
+        "marginTop": "20px",
+        "position": "absolute",
+        "right": "0",
+        "textAlign": "center",
+      }
+    }
+  >
+    hello world
+  </p>
+</Loading2>
+`;

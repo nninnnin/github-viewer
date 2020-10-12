@@ -1,0 +1,34 @@
+.battle-repos-container {
+    display: flex;
+    justify-content: center;
+}
+
+.battle-repo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    margin-left: 15px;
+}
+.battle-repo > span {
+    display: flex;
+}
+.battle-repo > span > input {
+    flex: 1;
+}
+.prize {
+    width: 1em;
+}
+.score {
+    display: block !important;
+    text-align: center;
+}
+
+.battle-button {
+    position: relative;
+    top: 50px;
+    left: 50%;
+    transform: translate(-45%);
+
+    padding: 10px 20px;
+}
